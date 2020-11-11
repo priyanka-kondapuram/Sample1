@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:VM="clr-namespace:Sample1"
+             x:Class="Sample1.MainPage">
+    
+    <ContentPage.BindingContext>
+        <VM:MainVM />
+    </ContentPage.BindingContext>
+    
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Button Text="Login (Click and wait for 5 seconds)" Command="{Binding ActionAsync}" CommandParameter="LOGIN" BackgroundColor="DarkRed" />
+    </StackLayout>
+</ContentPage>

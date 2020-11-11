@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Effects="clr-namespace:Sample1"
+             xmlns:M="clr-namespace:Sample1.MarkupExtensions"
+             xmlns:VM="clr-namespace:Sample1"
+             x:Class="Sample1.MasterPage">
+
+    <ContentPage.BindingContext>
+        <VM:MasterVM />
+    </ContentPage.BindingContext>
+
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="20">
+        <Picker IsVisible="False" x:Name="picker" Title="{M:T Select_a_vehicle}" ItemsSource="{M:PD Policy.A.Vehicles}" ItemDisplayBinding="{Binding DisplayName}" SelectedItem="{Binding SelectedPickerItem,Mode=TwoWay}">
+            <Picker.Effects>
+                <Effects:PickerDoneButton />
+            </Picker.Effects>
+        </Picker>
+        <Label Text="Master Page" TextColor="Black" />
+        <Label Text="Click here to open Vehicle list" BackgroundColor="DarkBlue" TextColor="White" Padding="10">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Action}" CommandParameter="{Reference picker}" />
+            </Label.GestureRecognizers>
+        </Label>
+        <Label Text="{Binding CurrentVehicle}" TextColor="Black" />
+    </StackLayout>
+</ContentPage>
