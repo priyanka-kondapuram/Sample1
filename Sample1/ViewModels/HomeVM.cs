@@ -9,7 +9,7 @@ namespace Sample1.ViewModels
     {
         #region Public Properties
 
-        public ICommand Action { get; set; }
+        public ICommand PickerAction { get; set; }
         public string CurrentVehicle { get => Get(""); set => Set(value); }
         public MasterVM ParentVM { get; set; }
 
@@ -32,7 +32,7 @@ namespace Sample1.ViewModels
 
         public HomeVM()
         {
-            Action = new Command<object>(execute: (obj) =>
+            PickerAction = new Command<object>(execute: (obj) =>
             {
                 IsExecuting = true;
                 PerformAction(obj);

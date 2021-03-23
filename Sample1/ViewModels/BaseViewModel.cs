@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -19,6 +20,7 @@ namespace Sample1.ViewModels
         #region Public Properties
 
         public ICommand ActionAsync { get; set; }
+        public ICommand Action { get; set; }
 
         public bool IsExecuting { get => Get<bool>(); set => Set(value); }
 
@@ -28,6 +30,13 @@ namespace Sample1.ViewModels
 
         public BaseViewModel()
         {
+            Action = new Command<string>(execute: (obj) =>
+            {
+                IsExecuting = true;
+                PerformAction(obj);
+                IsExecuting = false;
+            }, canExecute: (obj) => !IsExecuting);
+
             ActionAsync = new Command<object>(async (obj) =>
             {
                 IsExecuting = true;
@@ -49,7 +58,12 @@ namespace Sample1.ViewModels
         public virtual async Task PerformActionAsync(object obj)
         {
             await Task.Delay(1).ConfigureAwait(false);
-            throw new Exception("Please implement 'GenericActionAsync'.");
+            throw new Exception("Please implement 'PerformActionAsync'.");
+        }
+
+        public virtual void PerformAction(string str)
+        {
+            throw new Exception("Please implement 'PerformAction'.");
         }
 
         #endregion Public Methods
@@ -67,7 +81,18 @@ namespace Sample1.ViewModels
                 throw ex;
             }
         }
-
+        internal Page CurrentPage
+        {
+            get
+            {
+                var mainPage = Application.Current.MainPage;
+                if (mainPage is NavigationPage navigationPage)
+                {
+                    return navigationPage.Navigation.NavigationStack.LastOrDefault();
+                }
+                return mainPage;
+            }
+        }
         protected void Notify([CallerMemberName] string propertyName = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         protected bool Set<T>(T value, [CallerMemberName] string propertyName = null)

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:M="clr-namespace:Sample1.MarkupExtensions"
+             xmlns:Effects="clr-namespace:Sample1"
+             xmlns:Reusable="clr-namespace:Sample1.Views.ContentViews"
+             xmlns:VM="clr-namespace:Sample1.ViewModels"
+             x:Class="Sample1.Views.ConfirmationPage">
+
+    <ContentPage.BindingContext>
+        <VM:ConfirmationVM />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Confirmation Page"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="This button action removes the previous page (Payment Page) and then pops the current page (Confirmation Page)." Padding="10"/>
+            <Button Text="Click to pop confirmation page" Command="{Binding Action}" CommandParameter="PopConfirmationPage" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

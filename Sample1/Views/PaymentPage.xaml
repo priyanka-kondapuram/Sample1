@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:M="clr-namespace:Sample1.MarkupExtensions"
+             xmlns:Effects="clr-namespace:Sample1"
+             xmlns:Reusable="clr-namespace:Sample1.Views.ContentViews"
+             xmlns:VM="clr-namespace:Sample1.ViewModels"
+             x:Class="Sample1.Views.PaymentPage">
+
+    <ContentPage.BindingContext>
+        <VM:PaymentVM />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Payment Page!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <StackLayout Spacing="10" Padding="10">
+                <Label Text="This is User controller (contentView) picker" />
+                <StackLayout Orientation="Horizontal" Spacing="{DynamicResource Spacing_Label}">
+                    <Label Text="Icon" />
+                    <Label Text="Payment Type" FontAttributes="Bold" FontSize="13" />
+                </StackLayout>
+                <Reusable:Combobox EnableOptions="{M:PD Policy.AllowElectronicPayments}" PlaceHolder="Please select..." Value="{Binding SelectedPaymentType.Value}">
+                    <Picker Title="{M:T Payment_Type}" ItemsSource="{Binding PaymentTypes}" ItemDisplayBinding="{Binding Value}" SelectedItem="{Binding SelectedPaymentType}" FontSize="12">
+                        <Picker.Effects>
+                            <Effects:PickerDoneButton />
+                        </Picker.Effects>
+                    </Picker>
+                </Reusable:Combobox>
+            </StackLayout>
+
+            <Button Text="Click to push confirmation page" Command="{Binding Action}" CommandParameter="OpenConfirmationPage" />
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

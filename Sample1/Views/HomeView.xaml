@@ -4,13 +4,12 @@
              xmlns:Effects="clr-namespace:Sample1"
              xmlns:M="clr-namespace:Sample1.MarkupExtensions"
              xmlns:VM="clr-namespace:Sample1.ViewModels"
-             xmlns:Reusable="clr-namespace:Sample1.Views.ContentViews"
              x:Class="Sample1.Views.HomeView">
 
-    <RelativeLayout>
-        <RelativeLayout.BindingContext>
+    <StackLayout>
+        <StackLayout.BindingContext>
             <VM:HomeVM />
-        </RelativeLayout.BindingContext>
+        </StackLayout.BindingContext>
 
         <Label Text="Normal picker" />
         <Picker x:Name="picker" Title="{M:T Select_a_vehicle}" ItemsSource="{M:PD Policy.A.Vehicles}" ItemDisplayBinding="{Binding DisplayName}" SelectedItem="{Binding SelectedPickerItem,Mode=TwoWay}">
@@ -19,15 +18,14 @@
             </Picker.Effects>
         </Picker>
 
-        <StackLayout RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" BackgroundColor="Brown"
-												RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=1}">
+        <StackLayout>
             <Label Text="Master Page" TextColor="Black" />
             <Label Text="Click here to open Vehicle list" BackgroundColor="DarkBlue" TextColor="White" Padding="10">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Action}" CommandParameter="{Reference picker}" />
+                    <TapGestureRecognizer Command="{Binding PickerAction}" CommandParameter="{Reference picker}" />
                 </Label.GestureRecognizers>
             </Label>
             <Label Text="{Binding CurrentVehicle}" TextColor="Black" />
         </StackLayout>
-    </RelativeLayout>
+    </StackLayout>
 </ContentView>

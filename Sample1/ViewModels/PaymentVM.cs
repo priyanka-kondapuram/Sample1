@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Sample1.ViewModels
 {
-    public class MasterVM : BaseViewModel
+    public class PaymentVM : BaseViewModel
     {
         #region Public Fields
 
@@ -16,9 +16,6 @@ namespace Sample1.ViewModels
 
         #region Public Properties
 
-        public CViews CurrentView { get => Get(CViews.Home); set => Set(value); }
-
-        public HomeVM HomeVM { get; set; }
 
         public List<KeyValuePair<string, string>> PaymentTypes { get; set; } = new List<KeyValuePair<string, string>>
         {
@@ -42,15 +39,13 @@ namespace Sample1.ViewModels
 
         #region Public Constructors
 
-        public MasterVM()
+        public PaymentVM()
         {
-            HomeVM = new HomeView().Content.BindingContext as HomeVM;
-            HomeVM.ParentVM = this;
         }
 
         public override void PerformAction(string str)
         {
-                var page = new PaymentPage();
+                var page = new ConfirmationPage();
                 if (page != null && CurrentPage != page)
                 {
                     CurrentPage?.Navigation?.TryPushPage(page);
