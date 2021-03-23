@@ -2,6 +2,7 @@
 using Android.Text;
 using Android.Text.Style;
 using Sample1.Droid.Helper;
+using Sample1.Models;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;

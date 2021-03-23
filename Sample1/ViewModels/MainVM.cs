@@ -1,10 +1,13 @@
 ﻿using Newtonsoft.Json;
+using Sample1.Helper;
+using Sample1.Models;
+using Sample1.Views;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Sample1
+namespace Sample1.ViewModels
 {
     public class MainVM : BaseViewModel
     {
@@ -25,7 +28,25 @@ namespace Sample1
             try
             {
                 await Task.Delay(5000);
-                var json = JsonConvert.SerializeObject(new Policy { A = new A { Vehicles = new List<Vehicle> { new Vehicle { DisplayName = "Vehicle-1" }, new Vehicle { DisplayName = "Vehicle-2" }, new Vehicle { DisplayName = "Vehicle-3" } } } });
+                var json = JsonConvert.SerializeObject(new Policy
+                {
+                    A = new A
+                    {
+                        Vehicles = new List<Vehicle>
+                        {
+                            new Vehicle { DisplayName = "Vehicle-1" },
+                            new Vehicle { DisplayName = "Vehicle-2" },
+                            new Vehicle { DisplayName = "Vehicle-3" }
+                        }
+                    },
+                    AllowElectronicPayments = true
+                });
+                //var json = JsonConvert.SerializeObject(new Policy
+                //{
+                //    A = new A
+                //    {
+                //    }
+                //});
                 result = JsonConvert.DeserializeObject<Res>(json);
             }
             catch (Exception)

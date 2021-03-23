@@ -49,7 +49,8 @@ namespace Sample1.MarkupExtensions
         {
             return new Dictionary<string, string> 
             {
-                ["Select_a_vehicle"] = "Select a vehicle"
+                ["Select_a_vehicle"] = "Select a vehicle",
+                ["Payment_Type"] = "Payment Type"
             };
         }
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Sample1
+namespace Sample1.Models
 {
     public class A
     {
@@ -16,6 +16,8 @@ namespace Sample1
         #region Public Properties
 
         public A A { get; set; }
+        public bool AllowElectronicPayments { get; set; }
+        
 
         #endregion Public Properties
     }

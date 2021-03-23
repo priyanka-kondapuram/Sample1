@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Sample1.Views.ContentViews.Combobox"
+			x:Name="combobox" Padding="0" ChildAdded="FalconCombobox_ChildAdded" IsEnabled="{Binding Source={x:Reference combobox}, Path=EnableOptions}">
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+            <VisualState x:Name="Normal">
+                <VisualState.Setters>
+                    <Setter TargetName="navIcon" Property="Label.IsVisible" Value="True" />
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState x:Name="Disabled">
+                <VisualState.Setters>
+                    <Setter TargetName="navIcon" Property="Label.IsVisible" Value="False" />
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+
+    <Grid.GestureRecognizers>
+        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+    </Grid.GestureRecognizers>
+    <Frame x:Name="frame" Style="{DynamicResource G_Frame}">
+        <Frame.Padding>
+            <OnPlatform x:TypeArguments="Thickness" iOS="0" Android="1" />
+        </Frame.Padding>
+        <Grid BackgroundColor="Red" Padding="{Binding Source={x:Reference combobox}, Path=LabelPadding}" ColumnSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Source={x:Reference combobox}, Path=Value, Converter={StaticResource textConverter}, ConverterParameter={Reference combobox}}" FontSize="{Binding Source={x:Reference combobox}, Path=FontSize}" />
+            <Label Grid.Row="0" Grid.Column="1" x:Name="navIcon" Text="Icon" FontSize="{Binding Source={x:Reference combobox}, Path=FontSize}" />
+        </Grid>
+    </Frame>
+</Grid>

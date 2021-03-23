@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace Sample1
+namespace Sample1.Views
 {
     public partial class MasterPage : ContentPage
     {

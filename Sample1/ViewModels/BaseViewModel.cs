@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Sample1
+namespace Sample1.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

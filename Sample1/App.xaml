@@ -1,8 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:C="clr-namespace:Sample1.Converters"
              x:Class="Sample1.App">
     <Application.Resources>
-
+        <!--picker-->
+        <Style TargetType="Picker">
+            <Setter Property="IsVisible" Value="False" />
+            <Setter Property="ios:Picker.UpdateMode" Value="WhenFinished" />
+        </Style>
+        <C:ViewConverter x:Key="viewConverter" />
+        <C:TextConverter x:Key="textConverter" />
     </Application.Resources>
 </Application>

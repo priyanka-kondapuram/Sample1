@@ -1,19 +1,17 @@
-﻿using System.Windows.Input;
+﻿using Sample1.Helper;
+using Sample1.Models;
+using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Sample1
+namespace Sample1.ViewModels
 {
-    public class MasterVM : BaseViewModel
+    public class HomeVM : BaseViewModel
     {
         #region Public Properties
 
         public ICommand Action { get; set; }
-
-        public string CurrentVehicle
-        {
-            get => Get("");
-            set => Set(value);
-        }
+        public string CurrentVehicle { get => Get(""); set => Set(value); }
+        public MasterVM ParentVM { get; set; }
 
         public Vehicle SelectedPickerItem
         {
@@ -32,7 +30,7 @@ namespace Sample1
 
         #region Public Constructors
 
-        public MasterVM()
+        public HomeVM()
         {
             Action = new Command<object>(execute: (obj) =>
             {

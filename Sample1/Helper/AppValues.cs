@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Sample1.Models;
+using System.ComponentModel;
 
 namespace Sample1
 {

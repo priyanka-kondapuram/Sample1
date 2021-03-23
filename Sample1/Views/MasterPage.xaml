@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Effects="clr-namespace:Sample1"
+             xmlns:M="clr-namespace:Sample1.MarkupExtensions"
+             xmlns:VM="clr-namespace:Sample1.ViewModels"
+             xmlns:Reusable="clr-namespace:Sample1.Views.ContentViews"
+             x:Class="Sample1.Views.MasterPage">
+
+    <ContentPage.BindingContext>
+        <VM:MasterVM />
+    </ContentPage.BindingContext>
+
+    <StackLayout Spacing="20">
+        <ContentView x:Name="mainContent" Content="{Binding CurrentView,Converter={StaticResource viewConverter},ConverterParameter='MENU'}" />
+        <StackLayout Spacing="10" Padding="10">
+            <Label Text="User controller (contentView) picker" />
+            <StackLayout Orientation="Horizontal" Spacing="{DynamicResource Spacing_Label}">
+                <Label Text="Icon" />
+                <Label Text="Payment Type" FontAttributes="Bold" FontSize="13" />
+            </StackLayout>
+            <Reusable:Combobox EnableOptions="{M:PD Policy.AllowElectronicPayments}" PlaceHolder="Please select..." Value="{Binding SelectedPaymentType.Value}">
+                <Picker Title="{M:T Payment_Type}" ItemsSource="{Binding PaymentTypes}" ItemDisplayBinding="{Binding Value}" SelectedItem="{Binding SelectedPaymentType}" FontSize="12">
+                    <Picker.Effects>
+                        <Effects:PickerDoneButton />
+                    </Picker.Effects>
+                </Picker>
+            </Reusable:Combobox>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
